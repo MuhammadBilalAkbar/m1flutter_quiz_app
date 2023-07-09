@@ -6,13 +6,14 @@ class Answer extends StatelessWidget {
 
   const Answer(this.selectHandler, this.answerText, {Key? key})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.blue,
+          backgroundColor: Colors.blue,
           textStyle: const TextStyle(color: Colors.white),
         ),
         child: Text(answerText),

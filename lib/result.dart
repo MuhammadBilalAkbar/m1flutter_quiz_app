@@ -33,7 +33,7 @@ class Result extends StatelessWidget {
           ),
           TextButton(
               onPressed: resetHandler,
-              style: TextButton.styleFrom(primary: Colors.blue),
+              style: TextButton.styleFrom(foregroundColor: Colors.blue),
               child: const Text('Restart Quiz!')),
         ],
       ),
