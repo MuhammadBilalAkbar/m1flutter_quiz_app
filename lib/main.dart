@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:m1flutter_quiz_app/quiz.dart';
+import 'package:m1flutter_quiz_app/result.dart';
 
-import './quiz.dart';
-import './result.dart';
+void main() {
+  runApp(const MyApp());
+}
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Quiz App',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
   }
 }
 
-class _MyAppState extends State<MyApp> {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   final _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
@@ -70,18 +87,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text("Quiz App"), centerTitle: true),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(_totalScore, _resetQuiz),
-      ),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Quiz App"), centerTitle: true),
+      body: _questionIndex < _questions.length
+          ? Quiz(
+              answerQuestion: _answerQuestion,
+              questionIndex: _questionIndex,
+              questions: _questions,
+            )
+          : Result(_totalScore, _resetQuiz),
     );
   }
 }
